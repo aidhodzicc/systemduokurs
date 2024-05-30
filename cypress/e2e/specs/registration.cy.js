@@ -5,6 +5,8 @@ import {
   password,
   name,
   loginPage,
+  lastName,
+  address,
 } from '../utils/initialize'
 
 describe('Registration', () => {
@@ -31,31 +33,32 @@ describe('Registration', () => {
     // Then
     registrationPage.registrationForm.shouldBeVisible()
 
+    // When
     registrationPage.registrationForm.selectTitle({ titleValue: 'Mr' })
 
-    cy.get('[data-qa="name"]').should('have.value', 'Aid')
+    registrationPage.registrationForm.inputNameShouldHaveValue({ name })
 
-    cy.get('[data-qa="email"]').should('have.value', email).and('be.disabled')
+    registrationPage.registrationForm.inputEmailShouldHaveValue({ email })
 
-    cy.get('[data-qa="password"]').type(password)
+    registrationPage.registrationForm.inputPassword({ password })
 
-    cy.get('[data-qa="days"]').select(13)
+    registrationPage.registrationForm.selectDayOfBirth({ day: 13 })
 
-    cy.get('[data-qa="months"]').select('July')
+    registrationPage.registrationForm.selectMonthOfBirth({ month: 'July' })
 
-    cy.get('[data-qa="years"]').select('1997')
+    registrationPage.registrationForm.selectYearOfBirth({ year: '1997' })
 
-    cy.get('#newsletter').check()
+    registrationPage.registrationForm.checkNewsletter()
 
-    cy.get('#optin').check()
+    registrationPage.registrationForm.checkReceiveOffers()
 
-    cy.get('[data-qa="first_name"]').clear().type('Aid')
+    registrationPage.registrationForm.inputFirstName({ firstName: name })
 
-    cy.get('[data-qa="last_name"]').clear().type('Hodzic')
+    registrationPage.registrationForm.inputLastName({ lastName })
 
-    cy.get('[data-qa="company"]').clear().type('QA')
+    registrationPage.registrationForm.inputCompany({ companyName: 'QA' })
 
-    cy.get('[data-qa="address"]').clear().type('Zmaja od Bosne')
+    registrationPage.registrationForm.inputFirstAddress({ address })
 
     cy.get('[data-qa="address2"]').clear().type('Zmaja od Bosne')
 
