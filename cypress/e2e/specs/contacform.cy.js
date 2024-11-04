@@ -7,5 +7,7 @@ describe('Contact form', () => {
 
   afterEach(() => {})
 
-  it('Contact us through form', () => {})
+  it('Contact us through form', () => {
+    // dosta promjena
+  })
 })
